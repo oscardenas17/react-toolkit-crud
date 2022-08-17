@@ -23,9 +23,16 @@ export const taskSlice = createSlice({
       // console.log(state, action);  action.name o action.payload
       state.push(action.payload); //añadi al estado la info que viene en payload
     },
+    deleteTask: (state, action) => {
+      //console.log('id a borrar en payload', action);
+     const taskFound =   state.find(task => task.id === action.payload)
+      if(taskFound){
+        state.splice(state.indexOf( (taskFound) ,1))
+      }
+    }
   },
 });
 
-export const { addTask } = taskSlice.actions;
+export const { addTask,deleteTask } = taskSlice.actions;
 
 export default taskSlice.reducer;
